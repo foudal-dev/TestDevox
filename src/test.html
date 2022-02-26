@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>hello mtf </h1>
+        <h1>{{name}}</h1>
+        <app-count :source="source" v-bind:url="url"></app-count>
+        <app-count :source="source" v-bind:url="url"></app-count>
+        <app-count :source="source" v-bind:url="url"></app-count>
+        <app-count :source="source" v-bind:url="url"></app-count>
+
+
+        <test v-for="post in posts" :author="post.author" :title="post.title"></test>
+    </div>
+
+<script src="vue.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"></link>
+<script>
+
+Vue.component('test',{
+    data:function(){
+        return{
+
+        }
+    },
+    props:['author','title'],
+    template:'<p>Article Title is {{title}} and Written By {{author}}</p>',
+})
+Vue.component('app-count',{
+        data:function(){
+          return{
+            name :'fatima',
+            count : 0
+          }
+        },
+        props:['source','url'],
+        template:'<p @click="count++"> Hello {{name}} You Clicked This Paragraph {{count}} Times and Source Is {{source}} and url is {{url}}</p>'        
+      })
+var vm=new Vue({
+        el:'#app',
+        data:{
+          name :"ayoub",
+          source:'vue.js Documentation',
+          url:'https://www.youtube.com/watch?v=APKFjjPn6fE&list=PLDoPjvoNmBAxr5AqK3Yz4DWYKVSmIFziw&index=14',
+          posts:[
+              {id:1,author:'osama',title:'Article number one'},
+              {id:2,author:'ayoub',title:'Article number two'},
+              {id:3,author:'foudal',title:'Article number three'},
+              {id:4,author:'devox',title:'Article number four'},
+          ]
+        }
+      })
+</script>
+</body>
+</html>
